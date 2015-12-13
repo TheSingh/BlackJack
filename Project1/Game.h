@@ -15,10 +15,11 @@ private:
 	void printHelp();
 	void resetGame();
 	int askPlayer();
+	void dealerTurn();
 public:
 	Game();
 	void play();
 
-}
+};
 
 #endif
