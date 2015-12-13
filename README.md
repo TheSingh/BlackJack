@@ -3,6 +3,5 @@ A fully functional BlackJack simulator with a built-in dealer, written entirely 
 
 Features to be implemented:
 
-  -Add a dealer
-  
-  -Reorganize code in main to new class called Game to better follow OOP style.
+    -Add a dealer
+    -Reorganize code in main to new class called Game to better follow OOP style.
