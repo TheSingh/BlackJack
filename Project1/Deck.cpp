@@ -32,6 +32,8 @@ void Deck::reset() {
 			this->cards.push_back(Card(i, j));
 		}
 	}
+
+	//srand(time(NULL));
 }
 
 //Function passed into random_shuffle

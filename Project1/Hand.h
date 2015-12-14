@@ -11,6 +11,7 @@ public:
 	void addCard(Card);		//add a new card to the hand
 	bool isBust();			//Check to see if you've gone over 21
 	int getValue();			//get the current value of your hand
+	void clear();			//reset your hand
 	friend std::ostream& operator<<(std::ostream&, Hand);
 };
 

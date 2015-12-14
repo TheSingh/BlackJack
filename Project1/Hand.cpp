@@ -51,6 +51,11 @@ bool Hand::isBust() {
 		return false;
 }
 
+//reset the hand
+void Hand::clear() {
+	this->cards.clear();
+}
+
 //prints the Hand to the given stream
 std::ostream& operator<<(std::ostream& strm, Hand h) {
 	strm << "Cards in hand: \n";

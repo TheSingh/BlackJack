@@ -3,8 +3,8 @@
 
 using namespace std;
 
-
+//simply creates a blackjack game and calls the play function
 int main() {
-	Game game;
-	game.play();
+	Game blackJack;
+	blackJack.play();
 }

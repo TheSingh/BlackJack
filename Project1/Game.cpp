@@ -66,34 +66,84 @@ int Game::askPlayer() {
 	}
 }
 
+
 void Game::dealerTurn() {
+	std::cout << "Conducting dealer's turn.\n";
 
+	//dealer hits for 17 and under
+	while(dealer.getValue() < 18) {
+		deck.deal(dealer);
+	}
+
+	std::cout << "The Dealer's hand : \n" << dealer;
+	std::cout << "The value of dealer's hand: " << dealer.getValue() << std::endl;
+
+	//determine the winner
+	if(dealer.getValue() > 21) {
+		std::cout << "The Dealer's bust! You've won!\n" << std::endl;
+	} else if(dealer.getValue() == player.getValue()) {
+		std::cout << "It's a tie!\n";
+	} else if(dealer.getValue() > player.getValue()) {
+		std::cout << "You've lost!\n";
+	} else {
+		std::cout << "You've won!\n";
+	}
+
+	std::cout << "Press [q] to quit, any other key to restart.\n";
+
+	//does the user wish to quit?
+	char cmd = getchar();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+
+	if (cmd=='q') exit(0);
+
+	//start over again, if user does not quit.
+	resetGame();
 }
 
+//reshuffles the deck and passes out two cards to each player
 void Game::resetGame() {
+	this->deck.reset();
+	this->deck.shuffle();
 
+	//clear the hands
+	player.clear();
+	dealer.clear();
+
+	//hand out two cards to each player
+	this->deck.deal(this->player);
+	this->deck.deal(this->dealer);
+	this->deck.deal(this->player);
+	this->deck.deal(this->dealer);
 }
 
+//if the player goes over 21
 int playerBust() {
 	std::cout << "Darn! You've lost!\n";
 	std::cout << "Press [q] to quit, any other key to restart.\n";
 
-	char cmd;
-	std::cin >> cmd;
+	//does the user wish to continue?
+	char cmd = getchar();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 
 	if(cmd == 'q') return 1;
 
 	return 0;
 }
 
+//this executes the game
 void Game::play() {
+	//loop until quit
 	for(;;) {
+		std::cout << "________________________________\n";
 		int choice = askPlayer();
+
 		//handle each user choice
 		switch(choice) {
 		case HIT :
 			std::cout << "You chose hit on " << player.getValue() << std::endl;
 			deck.deal(player);
+
 			if(player.isBust()) {
 				std::cout << player;
 				//user is over the 21 limit
